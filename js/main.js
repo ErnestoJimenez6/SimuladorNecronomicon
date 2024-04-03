@@ -1,25 +1,7 @@
-// Guardar los datos en localStorage
-function guardarLS(){
-    // Convertir el arreglo de objetos a una cadena de texto
-    let serializedNecronomicon=""
-    for(let hechizo of necronomicon){
-        serializedNecronomicon+=`${hechizo.numero}, ${hechizo.nombre}, ${hechizo.invocacion};`
-    }
-    localStorage.setItem('necronomicon',serializedNecronomicon)
-}
-
-// Cargar los datos desde localStorage
-function cargarLS(){
-    const necronomiconGuardado=localStorage.getItem('necronomicon')
-    if(necronomiconGuardado){
-        // Convertir la cadena de texto de vuelta a un arreglo de objetos
-        const hechizosGuardados=necronomiconGuardado.split(';')
-        for (let hechizoString of hechizosGuardados){
-            const[numero,nombre,invocacion]=hechizoString.split(',')
-            necronomicon.push(new Hechizo(parseInt(numero),nombre,invocacion))
-        }
-    }
-}
+// VARIABLES
+const hechizosElegidos=[]
+const chooseNumberButton=document.getElementById("elegir-numero")
+const personalizarHechizoButton=document.getElementById("crear-hechizo")
 
 // Objetos
 class Hechizo{
@@ -30,6 +12,7 @@ class Hechizo{
     }
 }
 
+// Array
 const necronomicon=[
     new Hechizo(
         1,
@@ -59,7 +42,7 @@ const necronomicon=[
     new Hechizo(
         6,
         "Despertar del Fuego Infernal",
-        "¡Las llamas del abismo arden a tu voluntad!"
+        "Las llamas del abismo arden a tu voluntad!"
     ),
     new Hechizo(
         7,
@@ -83,6 +66,27 @@ const necronomicon=[
     )
 ]
 
+// LocalStorage
+function guardarLS(){
+    let serializedNecronomicon=""
+    for(let hechizo of necronomicon){
+        serializedNecronomicon+=`${hechizo.numero}, ${hechizo.nombre}, ${hechizo.invocacion};`
+    }
+    localStorage.setItem('necronomicon',serializedNecronomicon)
+}
+
+function cargarLS(){
+    const necronomiconGuardado=localStorage.getItem('necronomicon')
+    if(necronomiconGuardado){
+        const hechizosGuardados=necronomiconGuardado.split(';')
+        for (let hechizoString of hechizosGuardados){
+            const[numero,nombre,invocacion]=hechizoString.split(',')
+            necronomicon.push(new Hechizo(parseInt(numero),nombre,invocacion))
+        }
+    }
+}
+
+// Funciones principales
 function buscarHechizo(numero){
     return necronomicon.find(hechizo=>hechizo.numero===numero)
 }
@@ -102,10 +106,7 @@ function mostrarInventario(){
     }
 }
 
-const hechizosElegidos = []
-
-const chooseNumberButton=document.getElementById("elegir-numero")
-
+// DOM y eventos
 chooseNumberButton.addEventListener("click",function(){
     const numberInput=document.createElement("input")
     numberInput.type="number"
@@ -134,8 +135,6 @@ chooseNumberButton.addEventListener("click",function(){
 
     mostrarInventario()
 })
-
-const personalizarHechizoButton=document.getElementById("crear-hechizo")
 
 personalizarHechizoButton.addEventListener("click",function(){
     const personalizacionDiv=document.getElementById("personalizacion")
