@@ -1,0 +1,77 @@
+body {
+    background-image:url(./background.jpg!d);
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #212121;
+    text-shadow: 2px 0px 20px #4dff00;
+    color: #ffffff;
+    font-family: 'Gothic', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+#container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    color: #b30000;
+    font-size: 36px;
+}
+
+p {
+    line-height: 1.5;
+    font-size: 20px;
+}
+
+button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+input[type="number"],
+input[type="text"] {
+    padding: 5px;
+    border: 1px solid #666;
+    background-color: #222;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+#mensaje {
+    margin-top: 20px;
+    color: #b30000;
+}
+
+#inventario {
+    margin-top: 20px;
+}
+
+#lista-inventario {
+    list-style-type: none;
+    padding: 0;
+    text-align: left;
+}
+
+#lista-inventario li {
+    margin-bottom: 5px;
+}
+
+@media (max-width: 600px) {
+    #container {
+        padding: 10px;
+    }
+}

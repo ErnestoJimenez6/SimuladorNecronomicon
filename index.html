@@ -1,16 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        <!-- JS -->
         <script defer src="./js/main.js"></script>
+        <link rel="stylesheet" href="styles.css">
         <title>Simulador de Necronomicón</title>
     </head>
+
     <body>
-        <h1>Simulador de Necronomicón</h1>
-        <p>Que no está muerto lo que yace eternamente, y con eones extraños incluso la muerte puede morir</p>
-        <p>Bienvenido al Necronomicón. Invoca las fuerzas más allá de la comprensión humana.</p>
+
+        <div id="container">
+
+            <h1>Simulador de Necronomicón</h1>
+
+            <p>Que no está muerto lo que yace eternamente, y con eones extraños incluso la muerte puede morir</p>
+            <p>Bienvenido al Necronomicón. Invoca las fuerzas más allá de la comprensión humana.</p>
+    
+            <div id="opciones">
+
+                <button id="elegir-numero" name="elegir-numero">Elige un número</button>
+                <button id="crear-hechizo" name="crear-hechizo">Crea tu propio hechizo</button>
+
+            </div>
+    
+            <div id="mensaje"></div>
+    
+            <div id="confirmacion"></div>
+    
+            <div id="personalizacion">
+                <button id="guardar-personalización" name="guardar-personalización">Guardar</button>
+            </div>
+
+            <div id="inventario">
+                <h2>Inventario</h2>
+                <ul id="lista-inventario"></ul>
+            </div>
+            
+        </div>
+
     </body>
+
 </html>
