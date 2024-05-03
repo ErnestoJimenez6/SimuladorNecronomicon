@@ -1,3 +1,14 @@
+*{
+    margin:0;
+    padding:10px;
+}
+
+.creepster-regular{
+    font-family:'Creepster',system-ui;
+    font-weight:400;
+    font-style:normal;
+}
+  
 body{
     background-image:url(../img/background.jpg);
     background-size:cover;
@@ -5,9 +16,11 @@ body{
     background-repeat:no-repeat;
     background-position:center;
     background-color:#212121;
+    letter-spacing:0.5px;
     text-shadow:2px 0px 20px #4dff00;
     color:#ffffff;
-    font-family:'Gothic',sans-serif;
+    font-family:'Creepster',system-ui;
+    font-size:1rem;
     margin:0;
     padding: 0;
 }
@@ -20,29 +33,37 @@ body{
 }
 
 h1{
-    color:#b30000;
-    font-size:36px;
+    letter-spacing:0.5px;;
+    color:#4dff00;
+    font-size:3rem;
+    text-shadow:2px 0px 20px #b30000;
 }
 
 p{
+    letter-spacing:0.5px;;
     line-height:1.5;
-    font-size:20px;
+    font-size:1.5rem;
 }
 
 button{
-    background-color:#333;
+    letter-spacing: 1px;
+    font-family:'Creepster',system-ui;
+    font-size:1rem;
+    background-color:#b30000;
+    border-color:#b30000;
     color:#fff;
-    border:none;
     padding:10px 20px;
     margin-right:10px;
     cursor:pointer;
 }
 
 button:hover{
-    background-color:#555;
+    background-color:#212121;
+    color:#4dff00;
 }
 
-input[type="number"],input[type="text"]{
+input[type='number'],input[type='text']{
+    letter-spacing: 1px;
     padding:5px;
     border:1px solid #666;
     background-color:#222;
@@ -51,22 +72,39 @@ input[type="number"],input[type="text"]{
 }
 
 #mensaje{
+    letter-spacing:1px;
     margin-top:20px;
-    color:#b30000;
+    color:#ffffff;
 }
 
-#inventario{
-    margin-top:20px;
+.inventario-lista{
+    padding:10px;
+    background-color:rgba(255,255,255,0.1);
+    border-radius:5px;
+    max-height:200px;
+    overflow-y:auto;
 }
 
-#lista-inventario{
-    list-style-type:none;
-    padding:0;
-    text-align:left;
+.inventario-lista li{
+    margin-bottom:10px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 }
 
-#lista-inventario li{
-    margin-bottom:5px;
+.inventario-lista button{
+    background-color:#b30000;
+    color:#fff;
+    border:none;
+    padding:5px 10px;
+    border-radius:3px;
+    cursor:pointer;
+    margin-left:10px;
+}
+
+.inventario-lista button:hover{
+    background-color:#4dff00;
+    color:#212121;
 }
 
 @media(max-width:600px){
