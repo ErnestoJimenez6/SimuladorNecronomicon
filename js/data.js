@@ -46,6 +46,7 @@ fetch('../db/array.json')
     console.log('Operación de carga de datos finalizada.')
 })
 
+
 // LocalStorage
 function guardarLS() {
     localStorage.setItem('hechizosElegidos', JSON.stringify(hechizosElegidos))
