@@ -1,79 +1,80 @@
-// VARIABLES
-const necronomicon = []
-const hechizosElegidos=[]
-const mapaHechizos=new Map()
+const hechizoSelect = document.getElementById('hechizo');
+const resultadoDiv = document.getElementById('resultado');
+const btnGuardar = document.getElementById('btnGuardar');
 
-// Objetos
-class Hechizo{
-    constructor(numero,nombre,invocacion){
-        this.numero=numero
-        this.nombre=nombre
-        this.invocacion=invocacion
-    }
+let hechizos = [];
+let hechizoActual = null;
+
+// Cargar hechizos desde JSON
+fetch('array.json')
+  .then(response => {
+    if (!response.ok) throw new Error('Error al cargar los hechizos');
+    return response.json();
+  })
+  .then(data => {
+    hechizos = data;
+    cargarLS(); // Mostrar el hechizo guardado, si existe
+    poblarSelect();
+  })
+  .catch(error => {
+    console.error(error);
+    Toastify({
+      text: "No se pudo cargar el grimorio 📜",
+      duration: 3000,
+      gravity: "top",
+      position: "right",
+      backgroundColor: "#8B0000"
+    }).showToast();
+  });
+
+// Rellenar <select> con hechizos
+function poblarSelect() {
+  hechizos.forEach(hechizo => {
+    const option = document.createElement('option');
+    option.value = hechizo.id;
+    option.textContent = hechizo.nombre;
+    hechizoSelect.appendChild(option);
+  });
 }
 
-// Fecth
-fetch('../db/array.json')
-.then(response=>{
-    if(!response.ok){
-        throw new Error('Error al cargar los datos. Estado de respuesta: '+response.status)
-    }
-    return response.json()
-})
-.then(data=>{
-    try{
-        const processedData=data.map(item=>new Hechizo(item.numero,item.nombre,item.invocacion))
-        necronomicon.push(...processedData)
-        mostrarInventario()
-        const numeroHechizo=parseInt(numberInput.value)
-        const hechizo=buscarHechizo(numeroHechizo)
-        if(hechizo){
-            hechizosElegidos.push(hechizo)
-            mostrarMensaje(`Has elegido ${hechizo.nombre}. ${hechizo.invocacion}`)
-            mostrarInventario()
-            guardarLS()
-        }else{
-            mostrarMensaje('No se encontró ningún hechizo con ese número. Por favor, introduce un número válido.')
-        }
-    }catch(error){
-        console.error('Error al procesar los datos: ',error)
-    }
-})
-.catch(error=>{
-    console.error('Error en la carga de datos: ',error)
-})
-.finally(()=>{
-    console.log('Operación de carga de datos finalizada.')
-})
+// Mostrar hechizo seleccionado
+hechizoSelect.addEventListener('change', () => {
+  const id = parseInt(hechizoSelect.value);
+  hechizoActual = hechizos.find(h => h.id === id);
+  if (hechizoActual) mostrarHechizo();
+});
 
-
-// LocalStorage
-function guardarLS() {
-    localStorage.setItem('hechizosElegidos', JSON.stringify(hechizosElegidos))
+// Mostrar en pantalla
+function mostrarHechizo() {
+  resultadoDiv.innerHTML = `
+    <h2>${hechizoActual.nombre}</h2>
+    <p><strong>Descripción:</strong> ${hechizoActual.descripcion}</p>
+    ${hechizoActual.efecto ? `<p><strong>Efecto:</strong> ${hechizoActual.efecto}</p>` : ''}
+    ${hechizoActual.nivel ? `<p><strong>Nivel:</strong> ${hechizoActual.nivel}</p>` : ''}
+    ${hechizoActual.tipo ? `<p><strong>Tipo:</strong> ${hechizoActual.tipo}</p>` : ''}
+    ${hechizoActual.efectoSonoro ? `<p><strong>Sonido:</strong> ${hechizoActual.efectoSonoro}</p>` : ''}
+  `;
 }
 
-// Cargar inventario desde LocalStorage al cargar la página
-function cargarLS(){
-    const hechizosElegidosGuardados=JSON.parse(localStorage.getItem('hechizosElegidos'))
-    if(hechizosElegidosGuardados){
-        hechizosElegidos.push(...hechizosElegidosGuardados)
-        mostrarInventario()
-    }
-}
-cargarLS()
+// Guardar hechizo en localStorage
+btnGuardar.addEventListener('click', () => {
+  if (hechizoActual) {
+    localStorage.setItem('hechizoGuardado', JSON.stringify(hechizoActual));
+    Toastify({
+      text: "Hechizo guardado en tu grimorio 🧪",
+      duration: 2000,
+      gravity: "top",
+      position: "right",
+      backgroundColor: "#4B0082"
+    }).showToast();
+  }
+});
 
-// Eliminar un hechizo del inventario y actualizar LocalStorage
-function eliminarHechizo(index) {
-    hechizosElegidos.splice(index,1)
-    mostrarInventario()
-    guardarLS()
-}
-
-// Buscar Hechizo por número
-function buscarHechizo(numero){
-    if (necronomicon.length===0){
-        console.error('Necronomicon array is empty. Data may not have been fetched yet.')
-        return null
-    }
-    return necronomicon.find(hechizo=>hechizo.numero===numero)
+// Cargar desde localStorage si existe
+function cargarLS() {
+  const hechizoLS = localStorage.getItem('hechizoGuardado');
+  if (hechizoLS) {
+    hechizoActual = JSON.parse(hechizoLS);
+    mostrarHechizo();
+  }
 }
