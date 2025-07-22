@@ -1,52 +1,82 @@
 [
-    {
-        "numero": 1,
-        "nombre": "Invocar a Cthulhu",
-        "invocacion": "¡Cthulhu ha despertado!"
-    },
-    {
-        "numero": 2,
-        "nombre": "Abrir un portal a otra dimensión",
-        "invocacion": "¡Se ha abierto un portal a otra dimensión!"
-    },
-    {
-        "numero": 3,
-        "nombre": "Invocar a los muertos",
-        "invocacion": "¡Los muertos han respondido a tu llamado!"
-    },
-    {
-        "numero": 4,
-        "nombre": "Maldición de los ancestros",
-        "invocacion": "¡Las sombras de los ancestros te acompañan!"
-    },
-    {
-        "numero": 5,
-        "nombre": "Escudo de Oscuridad",
-        "invocacion": "¡Te rodea una barrera de oscuridad impenetrable!"
-    },
-    {
-        "numero": 6,
-        "nombre": "Despertar del Fuego Infernal",
-        "invocacion": "¡Las llamas del abismo arden a tu voluntad!"
-    },
-    {
-        "numero": 7,
-        "nombre": "Súplica a Nyarlathotep",
-        "invocacion": "¡Nyarlathotep, el mensajero de los dioses, escucha tu llamado!"
-    },
-    {
-        "numero": 8,
-        "nombre": "Bendición de Azathoth",
-        "invocacion": "¡La locura de Azathoth te otorga su protección!"
-    },
-    {
-        "numero": 9,
-        "nombre": "Maldición del Vacío",
-        "invocacion": "¡El vacío devora tu enemigo desde dentro!"
-    },
-    {
-        "numero": 10,
-        "nombre": "Círculo de Protección Arcano",
-        "invocacion": "¡Un círculo de poder te rodea, protegiéndote de las fuerzas malignas!"
-    }
+  {
+    "numero": 1,
+    "nombre": "Invocar a Cthulhu",
+    "invocacion": "¡Cthulhu ha despertado!",
+    "nivel": "Legendario",
+    "tipo": "Invocación",
+    "efectoSonoro": "cthulhu_roar.mp3"
+  },
+  {
+    "numero": 2,
+    "nombre": "Abrir un portal a otra dimensión",
+    "invocacion": "¡Se ha abierto un portal a otra dimensión!",
+    "nivel": "Avanzado",
+    "tipo": "Teletransporte",
+    "efectoSonoro": "portal_open.wav"
+  },
+  {
+    "numero": 3,
+    "nombre": "Invocar a los muertos",
+    "invocacion": "¡Los muertos han respondido a tu llamado!",
+    "nivel": "Intermedio",
+    "tipo": "Necromancia",
+    "efectoSonoro": "ghosts_whisper.ogg"
+  },
+  {
+    "numero": 4,
+    "nombre": "Maldición de los ancestros",
+    "invocacion": "¡Las sombras de los ancestros te acompañan!",
+    "nivel": "Intermedio",
+    "tipo": "Maldición",
+    "efectoSonoro": "curse_ancestors.mp3"
+  },
+  {
+    "numero": 5,
+    "nombre": "Escudo de Oscuridad",
+    "invocacion": "¡Te rodea una barrera de oscuridad impenetrable!",
+    "nivel": "Básico",
+    "tipo": "Defensa",
+    "efectoSonoro": "dark_shield.wav"
+  },
+  {
+    "numero": 6,
+    "nombre": "Despertar del Fuego Infernal",
+    "invocacion": "¡Las llamas del abismo arden a tu voluntad!",
+    "nivel": "Avanzado",
+    "tipo": "Ataque",
+    "efectoSonoro": "infernal_fire.mp3"
+  },
+  {
+    "numero": 7,
+    "nombre": "Súplica a Nyarlathotep",
+    "invocacion": "¡Nyarlathotep, el mensajero de los dioses, escucha tu llamado!",
+    "nivel": "Legendario",
+    "tipo": "Invocación",
+    "efectoSonoro": "nyarlathotep_call.wav"
+  },
+  {
+    "numero": 8,
+    "nombre": "Bendición de Azathoth",
+    "invocacion": "¡La locura de Azathoth te otorga su protección!",
+    "nivel": "Avanzado",
+    "tipo": "Bendición",
+    "efectoSonoro": "azathoth_blessing.ogg"
+  },
+  {
+    "numero": 9,
+    "nombre": "Maldición del Vacío",
+    "invocacion": "¡El vacío devora tu enemigo desde dentro!",
+    "nivel": "Avanzado",
+    "tipo": "Maldición",
+    "efectoSonoro": "void_curse.mp3"
+  },
+  {
+    "numero": 10,
+    "nombre": "Círculo de Protección Arcano",
+    "invocacion": "¡Un círculo de poder te rodea, protegiéndote de las fuerzas malignas!",
+    "nivel": "Intermedio",
+    "tipo": "Defensa",
+    "efectoSonoro": "arcane_circle.wav"
+  }
 ]
