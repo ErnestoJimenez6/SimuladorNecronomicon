@@ -1,114 +1,105 @@
-*{
-    margin:0;
-    padding:10px;
+/* Importar fuente */
+@import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
+
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.creepster-regular{
-    font-family:'Creepster',system-ui;
-    font-weight:400;
-    font-style:normal;
-}
-  
-body{
-    background-image:url(../img/background.jpg);
-    background-size:cover;
-    background-attachment:fixed;
-    background-repeat:no-repeat;
-    background-position:center;
-    background-color:#212121;
-    letter-spacing:0.5px;
-    text-shadow:2px 0px 20px #4dff00;
-    color:#ffffff;
-    font-family:'Creepster',system-ui;
-    font-size:1rem;
-    margin:0;
-    padding: 0;
+/* Fondo general */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #0d0d0d;
+  color: #e0dcdc;
+  line-height: 1.6;
+  min-height: 100vh;
+  padding: 20px;
+  background-image: url('https://www.transparenttextures.com/patterns/black-felt.png');
+  background-size: cover;
 }
 
-#container{
-    max-width:800px;
-    margin:0 auto;
-    padding:20px;
-    text-align:center;
+/* Contenedor principal */
+#container {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: rgba(20, 20, 20, 0.9);
+  border: 1px solid #3c3c3c;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 30px rgba(128, 0, 128, 0.5);
 }
 
-h1{
-    letter-spacing:0.5px;;
-    color:#4dff00;
-    font-size:3rem;
-    text-shadow:2px 0px 20px #b30000;
+/* Título principal */
+h1 {
+  font-family: 'Creepster', cursive;
+  font-size: 3rem;
+  text-align: center;
+  color: #b30059;
+  margin-bottom: 10px;
 }
 
-p{
-    letter-spacing:0.5px;;
-    line-height:1.5;
-    font-size:1.5rem;
+/* Párrafos introductorios */
+#container > p {
+  text-align: center;
+  font-style: italic;
+  margin-bottom: 10px;
 }
 
-button{
-    letter-spacing: 1px;
-    font-family:'Creepster',system-ui;
-    font-size:1rem;
-    background-color:#b30000;
-    border-color:#b30000;
-    color:#fff;
-    padding:10px 20px;
-    margin-right:10px;
-    cursor:pointer;
+/* Botones principales */
+#opciones {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 30px 0;
 }
 
-button:hover{
-    background-color:#212121;
-    color:#4dff00;
+#opciones button {
+  background-color: #400040;
+  color: #f8f8f8;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
 }
 
-input[type='number'],input[type='text']{
-    letter-spacing: 1px;
-    padding:5px;
-    border:1px solid #666;
-    background-color:#222;
-    color:#fff;
-    margin-bottom:10px;
+#opciones button:hover {
+  background-color: #990066;
 }
 
-#mensaje{
-    letter-spacing:1px;
-    margin-top:20px;
-    color:#ffffff;
+/* Mensaje y personalización */
+#mensaje,
+#personalizacion {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 1.1rem;
 }
 
-.inventario-lista{
-    padding:10px;
-    background-color:rgba(255,255,255,0.1);
-    border-radius:5px;
-    max-height:200px;
-    overflow-y:auto;
+/* Inventario */
+#inventario {
+  margin-top: 40px;
 }
 
-.inventario-lista li{
-    margin-bottom:10px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
+#inventario h2 {
+  font-family: 'Creepster', cursive;
+  font-size: 2rem;
+  color: #b30059;
+  margin-bottom: 10px;
+  text-align: center;
 }
 
-.inventario-lista button{
-    background-color:#b30000;
-    color:#fff;
-    border:none;
-    padding:5px 10px;
-    border-radius:3px;
-    cursor:pointer;
-    margin-left:10px;
+.inventario-lista {
+  list-style: square;
+  padding-left: 20px;
 }
 
-.inventario-lista button:hover{
-    background-color:#4dff00;
-    color:#212121;
-}
-
-@media(max-width:600px){
-    #container{
-        padding:10px;
-    }
+.inventario-lista li {
+  background-color: #1f1f1f;
+  border: 1px solid #444;
+  margin-bottom: 8px;
+  padding: 10px;
+  border-radius: 4px;
 }
