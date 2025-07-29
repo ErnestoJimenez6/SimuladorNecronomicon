@@ -1,52 +1,63 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
+
     <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Grimorio de Hechizos</title>
-    
-      <!-- Google Fonts: Creepster -->
-      <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet" />
-    
-      <!-- Toastify -->
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
-    
-      <!-- CSS -->
-      <link rel="stylesheet" href="./styles.css" />
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- JS -->
+        <script defer src="./js/main.js"></script>
+        <script defer src="./js/data.js"></script>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="./css/styles.css">
+
+        <!-- TOASTIFY -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+        <title>Simulador de Necronomicón</title>
+
+        <!-- FUENTE -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
     </head>
+
     <body>
-      <header>
-        <h1 class="creepster-regular">Grimorio de Hechizos</h1>
-      </header>
+
+        <div id="container">
+
+            <h1>Simulador de Necronomicón</h1>
+
+            <p>Que no está muerto lo que yace eternamente, y con eones extraños incluso la muerte puede morir</p>
+            <p>Bienvenido al Necronomicón. Invoca las fuerzas más allá de la comprensión humana.</p>
     
-      <main>
-        <section>
-          <h2>Seleccioná tu hechizo</h2>
-          <div id="hechizos-container" class="grid"></div>
-        </section>
+            <div id="opciones">
+
+                <button id="elegir-numero" name="elegir-numero">Elige un número</button>
+                <button id="crear-hechizo" name="crear-hechizo">Crea tu propio hechizo</button>
+
+            </div>
     
-        <section>
-          <h2>Hechizo personalizado</h2>
-          <form id="formulario">
-            <input type="text" id="nombre" placeholder="Nombre del hechizo" required />
-            <input type="number" id="nivel" placeholder="Nivel" required />
-            <textarea id="descripcion" placeholder="Descripción" required></textarea>
-            <button type="submit">Crear Hechizo</button>
-          </form>
-          <div id="personalizacion"></div> <!-- Inicia vacío -->
-        </section>
+            <div id="mensaje"></div>
     
-        <section>
-          <h2>Hechizos guardados</h2>
-          <div id="inventario" class="grid"></div>
-        </section>
-      </main>
+            <div id="confirmacion"></div>
     
-      <!-- Toastify -->
-      <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-    
-      <!-- Scripts -->
-      <script defer src="./data.js"></script>
-      <script defer src="./main.js"></script>
+            <div id="personalizacion">
+                <button id="guardar-personalizacion" name="guardar-personalización">Guardar</button>
+            </div>
+
+            <div id="inventario">
+                <h2>Inventario</h2>
+                <ul id="lista-inventario" class="inventario-lista">
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- TOASTIFY -->
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
     </body>
+
 </html>
