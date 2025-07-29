@@ -1,116 +1,126 @@
-const formulario = document.getElementById("formulario-hechizo");
-const hechizoContainer = document.getElementById("hechizo-container");
-const hechizoSeleccionado = document.getElementById("hechizo-seleccionado");
-const btnBorrarLS = document.getElementById("borrarLS");
+// VARIABLES
+const elegirEchizo=document.getElementById('elegir-numero')
+const personalizarHechizo=document.getElementById('crear-hechizo')
+const personalizacionDiv=document.getElementById('personalizacion')
 
-let hechizos = [];
-let hechizoElegido = null;
+// Personalización de hechizos y guardar en el inventario
+let contHechizosCustom=0
 
-// Crear hechizo personalizado con validación
-function crearHechizoPersonalizado(event) {
-  event.preventDefault();
+function crearHechizoPersonalizado(){
+    const nombre=document.getElementById('nombre-hechizo').value
+    const invocacion=document.getElementById('invocacion-hechizo').value
+    
+    if(!nombre||!invocacion){
+        Toastify({
+            text:'Por favor, completa todos los campos.',
+            duration:3000,
+            destination:'../index.html',
+            newWindow:false,
+            close:true,
+            gravity:'top',
+            position:'center',
+            stopOnFocus:true,
+            style:{
+                background:'linear-gradient(to right, #212121, #b30000)',
+            },
+            onClick:function(){}
+        }).showToast()
+        return
+    }
 
-  const nombre = document.getElementById("nombre").value.trim();
-  const tipo = document.getElementById("tipo").value.trim();
-  const nivel = parseInt(document.getElementById("nivel").value.trim());
-  const efecto = document.getElementById("efecto").value.trim();
-  const numero = parseInt(document.getElementById("numero").value.trim());
-
-  // Validar campos vacíos
-  if (!nombre || !tipo || isNaN(nivel) || !efecto || isNaN(numero)) {
-    Toastify({
-      text: "Todos los campos deben estar completos.",
-      style: { background: "red" },
-      duration: 3000,
-    }).showToast();
-    return;
-  }
-
-  // Validar duplicados
-  const repetido = hechizos.some(h => h.numero === numero || h.nombre.toLowerCase() === nombre.toLowerCase());
-  if (repetido) {
-    Toastify({
-      text: "Ya existe un hechizo con ese nombre o número.",
-      style: { background: "orange" },
-      duration: 3000,
-    }).showToast();
-    return;
-  }
-
-  const hechizo = { nombre, tipo, nivel, efecto, numero };
-  hechizos.push(hechizo);
-  localStorage.setItem("hechizos", JSON.stringify(hechizos));
-  mostrarInventario();
-  formulario.reset();
-
-  Toastify({
-    text: "¡Hechizo guardado!",
-    style: { background: "green" },
-    duration: 2000,
-  }).showToast();
+    contHechizosCustom++
+    const numHechizoCustom=10+contHechizosCustom
+    const nuevoHechizo=new Hechizo(numHechizoCustom,nombre,invocacion)
+    hechizosElegidos.push(nuevoHechizo)
+    mostrarInventario()
+    personalizacionDiv.innerHTML='<p>Hechizo personalizado añadido con éxito al Necronomicón.</p>'
+    guardarLS()
 }
 
-// Mostrar hechizo seleccionado
-function mostrarHechizo(hechizo) {
-  hechizoSeleccionado.innerHTML = `
-    <h2>${hechizo.nombre}</h2>
-    <p><strong>Tipo:</strong> ${hechizo.tipo}</p>
-    <p><strong>Nivel:</strong> ${hechizo.nivel}</p>
-    <p><strong>Efecto:</strong> ${hechizo.efecto}</p>
-  `;
-  hechizoElegido = hechizo;
-  localStorage.setItem("hechizoSeleccionado", JSON.stringify(hechizo));
+// mostrar mensajes en el DOM
+function mostrarMensaje(mensaje){
+    const mensajeDiv=document.getElementById('mensaje')
+    mensajeDiv.textContent=mensaje
 }
 
-// Mostrar hechizos disponibles
-function mostrarInventario() {
-  hechizoContainer.innerHTML = "";
+// mostrar hechizos elegidos
+function mostrarInventario(){
+    const listaInventario=document.getElementById('lista-inventario')
+    listaInventario.innerHTML=''
+    for(let i=0;i<hechizosElegidos.length;i++){
+        const hechizo=hechizosElegidos[i]
+        const listItem=document.createElement('li')
+        
+        const infoHechizo=document.createElement('p')
+        infoHechizo.textContent=${hechizo.numero}: ${hechizo.nombre} - ${hechizo.invocacion}
+        listItem.appendChild(infoHechizo)
+        
+        const eliminar=document.createElement('button')
+        eliminar.textContent='Eliminar'
+        eliminar.addEventListener('click',function(){
+            eliminarHechizo(i)
+        })
+        listItem.appendChild(eliminar)
 
-  hechizos.forEach(hechizo => {
-    const div = document.createElement("div");
-    div.classList.add("hechizo-card");
-    div.innerHTML = `
-      <h3>${hechizo.nombre}</h3>
-      <p><strong>Tipo:</strong> ${hechizo.tipo}</p>
-      <p><strong>Nivel:</strong> ${hechizo.nivel}</p>
-      <button class="btn-seleccionar">Seleccionar</button>
-    `;
-
-    div.querySelector(".btn-seleccionar").addEventListener("click", () => {
-      mostrarHechizo(hechizo);
-    });
-
-    hechizoContainer.appendChild(div);
-  });
+        listaInventario.appendChild(listItem)
+    }
 }
 
-// Cargar hechizos desde localStorage
-function cargarLS() {
-  const hechizosLS = localStorage.getItem("hechizos");
-  if (hechizosLS) {
-    hechizos = JSON.parse(hechizosLS);
-    mostrarInventario();
-  }
-
-  const seleccionadoLS = localStorage.getItem("hechizoSeleccionado");
-  if (seleccionadoLS) {
-    mostrarHechizo(JSON.parse(seleccionadoLS));
-  }
+// seleccionar un hechizo prediseñado
+function SelectHechizo(){
+    const numberInput=document.createElement('input')
+    numberInput.type='number'
+    numberInput.placeholder='Introduce el número del hechizo que deseas realizar'
+    const confirmar=document.createElement('button')
+    confirmar.textContent='Confirmar'
+    confirmar.addEventListener('click',function(){
+        const numeroHechizo=parseInt(numberInput.value)
+        const hechizo=buscarHechizo(numeroHechizo)
+        if(hechizo){
+            hechizosElegidos.push(hechizo)
+            mostrarMensaje(Has elegido ${hechizo.nombre}. ${hechizo.invocacion})
+            mostrarInventario()
+            guardarLS()
+        }else{
+            mostrarMensaje('No se encontró ningún hechizo con ese número. Por favor, introduce un número válido.')
+        }
+        numberInput.value=''
+    })
+    const mensajeDiv=document.getElementById('mensaje')
+    mensajeDiv.innerHTML=''
+    mensajeDiv.appendChild(numberInput)
+    mensajeDiv.appendChild(confirmar)
+    
+    mostrarInventario()
 }
 
-// Borrar localStorage
-btnBorrarLS.addEventListener("click", () => {
-  localStorage.clear();
-  hechizos = [];
-  hechizoElegido = null;
-  hechizoContainer.innerHTML = "";
-  hechizoSeleccionado.innerHTML = "";
-  Toastify({
-    text: "LocalStorage borrado.",
-    style: { background: "gray" },
-    duration: 2000,
-  }).showToast();
-});
+// personalizar un hechizo
+function customHechizo(){
+    personalizacionDiv.innerHTML=
+        <label for="nombre-hechizo">Nombre del hechizo:</label>
+        <input type="text" id="nombre-hechizo" name="nombre-hechizo" placeholder="Nombre del hechizo">
+        <br>
+        <label for="invocacion-hechizo">Invocación del hechizo:</label>
+        <input type="text" id="invocacion-hechizo" name="invocacion-hechizo" placeholder="Invocación del hechizo">
+        <br>
+        <button id="guardar-personalizacion">Guardar</button>
+    
 
-formulario.addEventListener("submit", crearHechizoPersonalizado);
-document.addEventListener("DOMContentLoaded", cargarLS);
+    const guardar=document.getElementById('guardar-personalizacion')
+    guardar.addEventListener('click',crearHechizoPersonalizado)
+}
+
+// guardar un hechizo personalizado
+function guardarHechizoPersonalizado(){
+    const nombre=document.getElementById('nombre-hechizo').value
+    const invocacion=document.getElementById('invocacion-hechizo').value
+
+    const nuevoHechizo=new Hechizo(necronomicon.length++,nombre,invocacion)
+    hechizosElegidos.push(nuevoHechizo)
+    mostrarInventario()
+    personalizacionDiv.innerHTML='<p>Hechizo personalizado añadido con éxito al Necronomicón.</p>'
+    guardarLS()
+}
+
+elegirEchizo.addEventListener('click',SelectHechizo)
+personalizarHechizo.addEventListener('click',customHechizo)
