@@ -13,7 +13,7 @@ class Hechizo{
 }
 
 // Fetch
-fetch('../db/array.json')
+fetch('./db/array.json')
 .then(response => {
     if (!response.ok) throw new Error('Error al cargar los datos. Estado de respuesta: ' + response.status)
     return response.json()
