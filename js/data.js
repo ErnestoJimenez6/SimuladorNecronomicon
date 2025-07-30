@@ -12,39 +12,23 @@ class Hechizo{
     }
 }
 
-// Fecth
+// Fetch
 fetch('../db/array.json')
-.then(response=>{
-    if(!response.ok){
-        throw new Error('Error al cargar los datos. Estado de respuesta: '+response.status)
-    }
+.then(response => {
+    if (!response.ok) throw new Error('Error al cargar los datos. Estado de respuesta: ' + response.status)
     return response.json()
 })
-.then(data=>{
-    try{
-        const processedData=data.map(item=>new Hechizo(item.numero,item.nombre,item.invocacion))
+.then(data => {
+    try {
+        const processedData = data.map(item => new Hechizo(item.numero, item.nombre, item.invocacion))
         necronomicon.push(...processedData)
         mostrarInventario()
-        const numeroHechizo=parseInt(numberInput.value)
-        const hechizo=buscarHechizo(numeroHechizo)
-        if(hechizo){
-            hechizosElegidos.push(hechizo)
-            mostrarMensaje(`Has elegido ${hechizo.nombre}. ${hechizo.invocacion}`)
-            mostrarInventario()
-            guardarLS()
-        }else{
-            mostrarMensaje('No se encontró ningún hechizo con ese número. Por favor, introduce un número válido.')
-        }
-    }catch(error){
-        console.error('Error al procesar los datos: ',error)
+    } catch (error) {
+        console.error('Error al procesar los datos: ', error)
     }
 })
-.catch(error=>{
-    console.error('Error en la carga de datos: ',error)
-})
-.finally(()=>{
-    console.log('Operación de carga de datos finalizada.')
-})
+.catch(error => console.error('Error en la carga de datos: ', error))
+.finally(() => console.log('Operación de carga de datos finalizada.'))
 
 
 // LocalStorage
