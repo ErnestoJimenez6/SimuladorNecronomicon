@@ -21,12 +21,21 @@ fetch('./db/array.json')
     if (!response.ok) throw new Error('Error al cargar los datos. Estado de respuesta: ' + response.status)
     return response.json()
 })
-.then(data => {
-    try {
-        const processedData = data.map(item => new Hechizo(item.numero, item.nombre, item.invocacion))
+.then(data=>{
+    try{
+        const processedData=data.map(item=> 
+            new Hechizo(
+                item.numero, 
+                item.nombre, 
+                item.invocacion, 
+                item.nivel, 
+                item.tipo, 
+                item.efectoSonoro
+            )
+        )
         necronomicon.push(...processedData)
         mostrarInventario()
-    } catch (error) {
+    }catch(error){
         console.error('Error al procesar los datos: ', error)
     }
 })
