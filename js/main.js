@@ -54,6 +54,16 @@ function mostrarInventario(){
         const infoHechizo=document.createElement('p')
         infoHechizo.textContent=`${hechizo.numero}: ${hechizo.nombre} [${hechizo.tipo} - ${hechizo.nivel}] - ${hechizo.invocacion}`
         listItem.appendChild(infoHechizo)
+
+        if(hechizo.efectoSonoro){
+            const playBtn=document.createElement('button')
+            playBtn.textContent='🔊'
+            playBtn.addEventListener('click',()=>{
+                const audio=new Audio(`./sounds/${hechizo.efectoSonoro}`)
+                audio.play()
+            })
+            listItem.appendChild(playBtn)
+        }
         
         const eliminar=document.createElement('button')
         eliminar.textContent='Eliminar'
