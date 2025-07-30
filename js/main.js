@@ -78,7 +78,7 @@ function SelectHechizo(){
         const hechizo=buscarHechizo(numeroHechizo)
         if(hechizo){
             hechizosElegidos.push(hechizo)
-            mostrarMensaje(Has elegido ${hechizo.nombre}. ${hechizo.invocacion})
+            mostrarMensaje(`Has elegido ${hechizo.nombre}. ${hechizo.invocacion}`)
             mostrarInventario()
             guardarLS()
         }else{
