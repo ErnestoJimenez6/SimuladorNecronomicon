@@ -52,7 +52,7 @@ function mostrarInventario(){
         const listItem=document.createElement('li')
         
         const infoHechizo=document.createElement('p')
-        infoHechizo.textContent=${hechizo.numero}: ${hechizo.nombre} - ${hechizo.invocacion}
+        infoHechizo.textContent=`${hechizo.numero}: ${hechizo.nombre} - ${hechizo.invocacion}`
         listItem.appendChild(infoHechizo)
         
         const eliminar=document.createElement('button')
