@@ -96,7 +96,7 @@ function SelectHechizo(){
 
 // personalizar un hechizo
 function customHechizo(){
-    personalizacionDiv.innerHTML=
+    personalizacionDiv.innerHTML=`
         <label for="nombre-hechizo">Nombre del hechizo:</label>
         <input type="text" id="nombre-hechizo" name="nombre-hechizo" placeholder="Nombre del hechizo">
         <br>
@@ -104,7 +104,7 @@ function customHechizo(){
         <input type="text" id="invocacion-hechizo" name="invocacion-hechizo" placeholder="Invocación del hechizo">
         <br>
         <button id="guardar-personalizacion">Guardar</button>
-    
+    `
 
     const guardar=document.getElementById('guardar-personalizacion')
     guardar.addEventListener('click',crearHechizoPersonalizado)
