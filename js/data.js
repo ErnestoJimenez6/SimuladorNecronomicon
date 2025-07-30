@@ -5,10 +5,13 @@ const mapaHechizos=new Map()
 
 // Objetos
 class Hechizo{
-    constructor(numero,nombre,invocacion){
+    constructor(numero,nombre,invocacion,nivel,tipo,efectoSonoro){
         this.numero=numero
         this.nombre=nombre
         this.invocacion=invocacion
+        this.nivel=nivel
+        this.tipo=tipo
+        this.efectoSonoro=efectoSonoro
     }
 }
 
